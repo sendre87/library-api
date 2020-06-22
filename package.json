@@ -1,0 +1,53 @@
+{
+  "name": "library-api",
+  "version": "1.0.0",
+  "description": "node.js, mongodb, swegger",
+  "main": "app.js",
+  "scripts": {
+    "start": "set DEBUG=app,app:* & nodemon app.js",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sendre87/library-api.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongo",
+    "mongoose",
+    "swegger"
+  ],
+  "author": "endre suba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sendre87/library-api/issues"
+  },
+  "homepage": "https://github.com/sendre87/library-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.18",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.3.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "nodemon": "^2.0.4"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
+    "delay": "2500",
+    "env": {
+      "NODE_ENV": "development",
+      "PORT": 4000
+    }
+  }
+}
