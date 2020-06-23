@@ -7,7 +7,7 @@ function routes(Book) {
   const controller = booksController(Book);
 
   bookRouter.route('/books')
-    .post(controller.post)
+    .post(controller.addBook)
     .get(controller.getAllBooks);
 
   bookRouter.use('/books/:bookId', controller.getBookById);

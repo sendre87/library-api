@@ -1,5 +1,5 @@
 function booksController(Book) {
-  async function post(req, res) {
+  async function addBook(req, res) {
     const book = new Book(req.body);
     if (!req.body.title) {
       res.status(400);
@@ -98,7 +98,7 @@ function booksController(Book) {
   }
 
   return { 
-    post,
+    addBook,
     getAllBooks,
     getBookById,
     processBookById,
