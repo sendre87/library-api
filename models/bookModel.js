@@ -1,6 +1,6 @@
-const mongodb = require('mongoose');
+const mongoose = require('mongoose');
 
-const { Schema } = mongodb;
+const { Schema } = mongoose;
 
 const bookModel = new Schema(
   {
@@ -11,4 +11,4 @@ const bookModel = new Schema(
   },
 );
 
-module.exports = mongodb.model('Book', bookModel);
+module.exports = mongoose.model('Book', bookModel);
