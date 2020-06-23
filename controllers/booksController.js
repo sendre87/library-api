@@ -1,3 +1,5 @@
+const debug = require('debug')('app:controller');
+
 function booksController(Book) {
   async function addBook(req, res) {
     const book = new Book(req.body);
@@ -47,7 +49,10 @@ function booksController(Book) {
     const returnBook = req.book.toJSON();
 
     returnBook.links = {};
-    const genre = req.book.genre.replace(' ', '%20');
+    let genre = ""
+    if(req.book.genre)
+      genre =  req.book.genre.replace(' ', '%20');
+      
     returnBook.links.FilterByThisGenre = `http://${req.headers.host}/api/books/?genre=${genre}`;
     res.json(returnBook);
   }
@@ -58,6 +63,8 @@ function booksController(Book) {
     book.author = req.body.author;
     book.genre = req.body.genre;
     book.read = req.body.read;
+    debug(req.body);
+  
 
     await req.book.save((err) => {
       if (err) {

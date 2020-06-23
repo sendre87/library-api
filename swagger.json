@@ -1,0 +1,240 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Library-API",
+    "description": "Test Application API to learn node.js structure and mongoose",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Books",
+      "description": "API for a booklibrary in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/addBook": {
+      "post": {
+        "tags": [
+          "Books"
+        ],
+        "description": "Create new book in system",
+        "parameters": [
+          {
+            "name": "book",
+            "in": "body",
+            "description": "Book that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New Book is created",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/books": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Get all books in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Books"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/books/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of book that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "summary": "Get book with given ID",
+        "tags": [
+          "Books"
+        ],
+        "responses": {
+          "200": {
+            "description": "Book returned",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update book with give ID",
+        "tags": [
+          "Books"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Book with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/updateBook"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book is updated",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update book",
+        "tags": [
+          "Books"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Book with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/updateBook"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book is updated",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete book with given ID",
+        "tags": [
+          "Books"
+        ],
+        "responses": {
+          "200": {
+            "description": "Book is deleted",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Book": {
+      "required": [
+        "bookId"
+      ],
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "read": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "updateBook": {
+      "required": [
+        "title",
+        "author",
+        "genre"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "read": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "Books": {
+      "properties": {
+        "books": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "integer",
+                "uniqueItems": true
+              },
+              "title": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              },
+              "genre": {
+                "type": "string"
+              },
+              "read": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
